@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import random
 from typing import Dict, List
 from random import choice
 from fastapi.middleware.cors import CORSMiddleware
@@ -19,7 +20,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
+number = random.randint(0, 100)
+
+@app.get("/guess")
+async def make_guess(zinna: int)->str:
+
+    if zinna < number:
+        return 'higher'
+    elif zinna > number:
+        return'lower'
+    else:
+        return str(zinna)
+    
+@app.get("/code")
+async def string_returning(code: str)->str:
+    return code
+
 async def generate_jsons() -> List[Dict[str, str]]:
     jsons = []
     for i in range(10):
