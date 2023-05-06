@@ -31,7 +31,7 @@ jobs:
 
       - name: Push Docker image to EC2
         run: |
-          docker save stori | ssh -i key.pem ec2-user@ec2-100-24-24-247.compute-1.amazonaws.com "sudo docker load"
+          docker save stori | ssh -i key.pem -o "StrictHostKeyChecking no" ec2-user@ec2-100-24-24-247.compute-1.amazonaws.com "sudo docker load"
 
       - name: ReCreate and start container
         run: |
