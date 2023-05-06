@@ -32,6 +32,10 @@ async def make_guess(zinna: int)->str:
     else:
         return str(zinna)
     
+@app.get("/")
+async def string_returning(code: str)->str:
+    return "redeploy works as a charm"
+
 @app.get("/code")
 async def string_returning(code: str)->str:
     return code
